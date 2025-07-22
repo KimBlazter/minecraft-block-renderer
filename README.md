@@ -1,54 +1,52 @@
-# React + TypeScript + Vite
+# 🧱 Minecraft Block Renderer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A dynamic web-based Minecraft block renderer that replicates how blocks look in the in-game inventory.  
+Built with **React** and **React Three Fiber**, it allows you to load official Minecraft assets from a remote server, render them interactively, and export them as isometric images (individually or spritemap).
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### **Remote Asset Fetching**
 
-## Expanding the ESLint configuration
+- Downloads block models (`.json`) and item textures (`.png`) dynamically from a [configurable server](https://github.com/KimBlazter/minecraft-assets-server).
+- Easy to update assets without rebuilding the app.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### **Dynamic Model Rendering**
 
-```js
-export default tseslint.config({
-    extends: [
-        // Remove ...tseslint.configs.recommended and replace with this
-        ...tseslint.configs.recommendedTypeChecked,
-        // Alternatively, use this for stricter rules
-        ...tseslint.configs.strictTypeChecked,
-        // Optionally, add this for stylistic rules
-        ...tseslint.configs.stylisticTypeChecked,
-    ],
-    languageOptions: {
-        // other options...
-        parserOptions: {
-            project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-            tsconfigRootDir: import.meta.dirname,
-        },
-    },
-});
+- Uses [React Three Fiber](https://github.com/pmndrs/react-three-fiber) to render Minecraft `.json` models in a real-time 3D canvas.
+- Renders blocks exactly as they appear in the game inventory, with correct lighting and materials.
+
+### **Animated Textures Support**
+
+- Handles animated item/block textures using frame-based rendering logic (if your assets include `.mcmeta` animation definitions).
+- **⚠️ IT DOESN'T EXPORT ANIMATED TEXTURE YET**
+
+### **Flexible Export System**
+
+- Export each block as an **isometric PNG** (just like in Minecraft).
+- Export all blocks and items as a **single spritemap** with a JSON metadata file for easy game dev integration.
+
+---
+
+## 📦 Getting Started
+
+### **0. 🛠️ Setup assets server**
+
+Instructions can be found [here](https://github.com/KimBlazter/minecraft-assets-server)
+
+### **1. Clone the repository**
+
+```bash
+git clone https://github.com/KimBlazter/minecraft-block-renderer
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### **2. Install depedencies**
 
-```js
-// eslint.config.js
-import reactX from "eslint-plugin-react-x";
-import reactDom from "eslint-plugin-react-dom";
+```bash
+pnpm install     # or: npm install
+```
 
-export default tseslint.config({
-    plugins: {
-        // Add the react-x and react-dom plugins
-        "react-x": reactX,
-        "react-dom": reactDom,
-    },
-    rules: {
-        // other rules...
-        // Enable its recommended typescript rules
-        ...reactX.configs["recommended-typescript"].rules,
-        ...reactDom.configs.recommended.rules,
-    },
-});
+### **3. Run the web application**
+
+```bash
+pnpm dev    # or: npm run dev
 ```
