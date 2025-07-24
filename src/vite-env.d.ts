@@ -8,6 +8,7 @@ interface ViteTypeOptions {
 
 interface ImportMetaEnv {
     readonly VITE_ASSETS_BASE_URL: string;
+    readonly VITE_ASSETS_SERVER_URL: string;
     // more env variables...
 }
 
