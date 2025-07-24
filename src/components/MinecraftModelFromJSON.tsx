@@ -125,11 +125,10 @@ function createMinecraftTexture(
     const canvas = document.createElement("canvas");
     const ctx = canvas.getContext("2d")!;
 
-    const width = image.width;
-    const height = image.height;
-
     // Use UVs from the face or generate default UVs
     let uv = face.uv ?? generateDefaultUV(element, direction);
+    const width = image.width;
+    const height = image.height;
 
     canvas.width = Math.max(16, Math.abs(uv[2] - uv[0]));
     canvas.height = Math.max(16, Math.abs(uv[3] - uv[1]));
@@ -146,7 +145,6 @@ function createMinecraftTexture(
     let flipX = uv[0] > uv[2];
     let flipY = uv[1] > uv[3];
 
-    // Pour la face "down", on inverse TOUJOURS flipX et flipY (miroir complet)
     if (direction === "down") {
         flipX = !flipX;
         flipY = flipY;
