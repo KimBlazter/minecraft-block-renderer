@@ -19,7 +19,13 @@ export default function ModelSelector({
 }: {
     onChange: (path: any | undefined) => void;
 }) {
-    const { data, error } = useSWR<FetchAssets>("/assets-index.json", fetcher);
+    const { data, error } = useSWR<FetchAssets>(
+        `${import.meta.env.VITE_ASSETS_SERVER_URL}assets-index.json`,
+        fetcher,
+        {
+            refreshInterval: 60000, // Refresh every minute
+        }
+    );
 
     const [search, setSearch] = useState("");
     const [filter, setFilter] = useState<"all" | "block" | "item">("all");

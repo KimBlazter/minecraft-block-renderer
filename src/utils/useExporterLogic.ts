@@ -140,8 +140,11 @@ export function useExporterLogic() {
     const exportedCount = useRef<number>(0);
 
     const { data: assetsData, error } = useSWR<FetchAssets>(
-        "/assets-index.json",
-        fetcher
+        `${import.meta.env.VITE_ASSETS_SERVER_URL}assets-index.json`,
+        fetcher,
+        {
+            refreshInterval: 60000, // Refresh every minute
+        }
     );
 
     useEffect(() => {
